@@ -1,0 +1,407 @@
+/* ─── Design tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --ink:       #1a1410;
+  --paper:     #f5f0e8;
+  --cream:     #ede8da;
+  --accent:    #8b3a2a;
+  --gold:      #c9943a;
+  --muted:     #6b6258;
+  --rule:      #c8bfaa;
+  --highlight: #f0e6c8;
+}
+
+/* ─── Reset & base ───────────────────────────────────────────────────────────── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  padding: 40px 24px;
+}
+
+.page { max-width: 880px; margin: 0 auto; }
+
+/* ─── Header ─────────────────────────────────────────────────────────────────── */
+header {
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding: 20px 0 16px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+header .subtitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ─── Root switcher ──────────────────────────────────────────────────────────── */
+.root-switcher {
+  background: var(--ink);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.root-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.root-buttons { display: flex; flex-wrap: wrap; gap: 5px; }
+.root-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 5px 11px;
+  border: 1px solid #4a4540;
+  background: transparent;
+  color: #ccc;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.12s;
+}
+.root-btn:hover  { background: #2a2520; color: white; border-color: #6a6058; }
+.root-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+.root-display {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  color: white;
+  margin-left: auto;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* ─── Color legend ───────────────────────────────────────────────────────────── */
+.note-legend { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.nl-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+}
+.nl-dot { width: 10px; height: 10px; border-radius: 2px; }
+.nl-dot.r { background: var(--ink); }
+.nl-dot.n { background: var(--highlight); border: 1px solid var(--rule); }
+.nl-dot.m { background: var(--accent); }
+.nl-dot.e { background: #c8dcc8; border: 1px solid #a8c0a8; }
+
+/* ─── Sections ───────────────────────────────────────────────────────────────── */
+.section { margin-bottom: 28px; }
+.section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 12px;
+}
+
+/* ─── Chord grid & cards ─────────────────────────────────────────────────────── */
+.chord-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 10px;
+}
+.chord-card {
+  background: white;
+  border: 1px solid var(--rule);
+  padding: 14px 16px 10px;
+  transition: box-shadow 0.15s;
+}
+.chord-card:hover        { box-shadow: 3px 3px 0 var(--rule); }
+.chord-card.accent-left  { border-left: 3px solid var(--accent); }
+.chord-card.accent-gold  { border-left: 3px solid var(--gold); }
+.chord-card.accent-dark  { border-left: 3px solid var(--ink); }
+.chord-card.accent-muted { border-left: 3px solid var(--muted); }
+
+.chord-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.chord-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.chord-symbol {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ─── Interval formula pills ─────────────────────────────────────────────────── */
+.chord-formula {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+  align-items: center;
+}
+.note {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  background: var(--highlight);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.note.root    { background: var(--ink);    color: var(--paper); border-color: var(--ink); }
+.note.special { background: var(--accent); color: white;        border-color: var(--accent); }
+.note.ext     { background: #e8f0e8;       border-color: #a8c0a8; color: #2a4a2a; }
+.plus { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); }
+
+.chord-desc {
+  font-size: 0.7rem;
+  color: var(--muted);
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+/* ─── Note name pills ────────────────────────────────────────────────────────── */
+.chord-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  padding: 5px 7px;
+  background: var(--cream);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.cn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+.cn.r { background: var(--ink);    color: var(--paper); }
+.cn.m { background: var(--accent); color: white; }
+.cn.e { background: #c8dcc8; color: #1a3a1a; border: 1px solid #a8c0a8; }
+.cn.n { background: var(--highlight); color: var(--ink); border: 1px solid var(--rule); }
+
+/* ─── Staff notation ─────────────────────────────────────────────────────────── */
+.staff-wrap {
+  background: #faf8f4;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: center;
+}
+.staff-wrap svg { display: block; overflow: visible; }
+
+/* ─── Interval key bar ───────────────────────────────────────────────────────── */
+.interval-key {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  align-items: center;
+}
+.interval-key .key-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-right: 4px;
+}
+.interval-key .intervals { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.interval-item {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.int-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 0.62rem;
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.int-badge.gold  { background: var(--gold); }
+.int-badge.muted { background: #4a4540; }
+
+/* ─── Foundations glossary ───────────────────────────────────────────────────── */
+.foundations { margin-bottom: 32px; }
+.foundations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+}
+.found-card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--ink);
+  padding: 14px 16px;
+}
+.found-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.found-card p  { font-size: 0.72rem; color: var(--muted); line-height: 1.6; }
+.found-card .found-example {
+  margin-top: 7px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ink);
+  background: white;
+  border: 1px solid var(--rule);
+  padding: 4px 8px;
+  display: inline-block;
+}
+
+/* ─── Piano keyboard diagram ─────────────────────────────────────────────────── */
+.keyboard-wrap { margin-bottom: 32px; }
+.keyboard {
+  display: flex;
+  gap: 0;
+  height: 80px;
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  margin: 12px 0 8px;
+  user-select: none;
+}
+.white-key {
+  flex: 1;
+  background: white;
+  border: 1px solid #bbb;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--muted);
+  z-index: 1;
+  text-align: center;
+  line-height: 1.3;
+}
+.white-key.highlight { background: var(--highlight); border-color: var(--gold); color: var(--ink); font-weight: 600; }
+.black-keys { position: absolute; top: 0; left: 0; right: 0; height: 52%; display: flex; pointer-events: none; }
+.bk-spacer { flex: 1; }
+.black-key {
+  width: 58%;
+  background: var(--ink);
+  border-radius: 0 0 3px 3px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 3px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.48rem;
+  color: #aaa;
+  flex-shrink: 0;
+  z-index: 2;
+  margin: 0 -29%;
+  text-align: center;
+  line-height: 1.3;
+}
+.keyboard-caption { font-size: 0.68rem; color: var(--muted); font-style: italic; line-height: 1.5; }
+.keyboard-caption strong { color: var(--ink); font-style: normal; }
+
+/* ─── Tips box ───────────────────────────────────────────────────────────────── */
+.tips-box {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+.tips-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+.tips-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.tips-list li {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+  color: var(--muted);
+}
+.tips-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+.tips-list li strong  { color: var(--ink); font-weight: 500; }
+
+/* ─── Interval reference table ───────────────────────────────────────────────── */
+.interval-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+.interval-table th {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 2px solid var(--ink);
+  background: var(--cream);
+}
+.interval-table td { padding: 6px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.interval-table tr:hover td { background: var(--highlight); }
+.interval-table .mono { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.72rem; }
+
+/* ─── Footer ─────────────────────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  header { flex-direction: column; gap: 8px; }
+  header h1 { font-size: 1.8rem; }
+  .chord-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 4px; }
+  .root-display { margin-left: 0; }
+}

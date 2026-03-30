@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chord Theory Cheat Sheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <header>
+    <h1>Chord Theory</h1>
+    <div><div class="subtitle">Cheat Sheet · Triads, 7ths &amp; Extensions</div></div>
+  </header>
+
+  <!-- ── Root note switcher ─────────────────────────────────────────────── -->
+  <div class="root-switcher">
+    <span class="root-label">Root note →</span>
+    <div class="root-buttons" id="rootButtons"></div>
+    <div class="root-display" id="rootDisplay">C</div>
+  </div>
+
+  <!-- ── Color legend ───────────────────────────────────────────────────── -->
+  <div class="note-legend">
+    <div class="nl-item"><div class="nl-dot r"></div> Root</div>
+    <div class="nl-item"><div class="nl-dot n"></div> Natural interval</div>
+    <div class="nl-item"><div class="nl-dot m"></div> Altered / minor interval</div>
+    <div class="nl-item"><div class="nl-dot e"></div> Extension (7th+)</div>
+  </div>
+
+  <!-- ── Chord sections (populated by app.js) ───────────────────────────── -->
+  <div class="section">
+    <div class="section-title">Triads — 3-note chords</div>
+    <div class="chord-grid" id="triads"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Seventh Chords — add the 7th on top</div>
+    <div class="chord-grid" id="sevenths"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Extensions — 9ths, 11ths, 13ths</div>
+    <div class="chord-grid" id="extensions"></div>
+  </div>
+
+  <!-- ── Quick tips ─────────────────────────────────────────────────────── -->
+  <div class="tips-box">
+    <h3>Quick Identification Tips</h3>
+    <ul class="tips-list">
+      <li><strong>Major vs Minor:</strong> Only difference is the 3rd — M3 (4 semitones) = major, m3 (3 semitones) = minor.</li>
+      <li><strong>Diminished vs Half-Dim:</strong> Both have m3 + ♭5. Half-dim has a ♭7 (ø); full dim has a 𝄫7 (°7).</li>
+      <li><strong>Dominant 7 vs Major 7:</strong> Both are major triads. Dominant has a ♭7; Major 7 has a natural M7. The ♭7 makes it want to resolve.</li>
+      <li><strong>9 vs add9:</strong> A 9 chord implies the 7th is present too; add9 is triad + 9th only.</li>
+      <li><strong>Extensions stack up:</strong> A 13 chord contains 7, 9, 11, and 13. Pianists drop the 5th and often the 11th.</li>
+      <li><strong>Symmetrical chords:</strong> Dim7 repeats every m3; Aug repeats every M3. Only 3 dim7 and 4 aug chords exist across all 12 keys.</li>
+      <li><strong>Semitone trick:</strong> Count from root up. Root=0, m3=3, M3=4, P5=7, ♭7=10, M7=11.</li>
+    </ul>
+  </div>
+
+  <!-- ── Semitone reference bar ─────────────────────────────────────────── -->
+  <div class="interval-key">
+    <span class="key-label">Semitones →</span>
+    <div class="intervals">
+      <div class="interval-item"><span class="int-badge muted">0</span> Root</div>
+      <div class="interval-item"><span class="int-badge muted">1</span> m2</div>
+      <div class="interval-item"><span class="int-badge">2</span> M2/9th</div>
+      <div class="interval-item"><span class="int-badge">3</span> m3</div>
+      <div class="interval-item"><span class="int-badge">4</span> M3</div>
+      <div class="interval-item"><span class="int-badge muted">5</span> P4/11th</div>
+      <div class="interval-item"><span class="int-badge">6</span> ♭5/♯11</div>
+      <div class="interval-item"><span class="int-badge">7</span> P5</div>
+      <div class="interval-item"><span class="int-badge muted">8</span> ♯5/♭13</div>
+      <div class="interval-item"><span class="int-badge gold">9</span> M6/13th</div>
+      <div class="interval-item"><span class="int-badge gold">10</span> m7(♭7)</div>
+      <div class="interval-item"><span class="int-badge gold">11</span> M7</div>
+    </div>
+  </div>
+
+  <!-- ── Foundations glossary ───────────────────────────────────────────── -->
+  <div class="foundations">
+    <div class="section-title">Foundations — what these terms actually mean</div>
+    <div class="foundations-grid">
+      <div class="found-card">
+        <h3>Semitone (half step)</h3>
+        <p>The smallest distance between two notes in Western music. On a piano, it's one key to the immediately next key — including black keys. All intervals are measured by counting semitones from the root.</p>
+        <div class="found-example">C → C♯ = 1 semitone</div>
+      </div>
+      <div class="found-card">
+        <h3>Whole tone (whole step)</h3>
+        <p>Two semitones. Skips one key on the piano. C → D is a whole step (passes through C♯). Most scale steps are whole tones; half steps occur at E→F and B→C naturally.</p>
+        <div class="found-example">C → D = 2 semitones</div>
+      </div>
+      <div class="found-card">
+        <h3>Interval</h3>
+        <p>The distance between two notes, named by how many scale degrees apart they are. A "3rd" spans 3 letter names (C–D–E). Whether major or minor depends on exact semitone count.</p>
+        <div class="found-example">C → E = Major 3rd (4 st)</div>
+      </div>
+      <div class="found-card">
+        <h3>Root</h3>
+        <p>The note a chord is named after and built from. Every other note is measured as an interval above the root. The root doesn't have to be the lowest note played (that's an inversion).</p>
+        <div class="found-example">C chord → root is C</div>
+      </div>
+      <div class="found-card">
+        <h3>Sharp (♯) and Flat (♭)</h3>
+        <p>♯ raises a note by one semitone. ♭ lowers it by one. In chord names: ♭3 = minor 3rd, ♭7 = minor 7th, ♯5 = augmented 5th.</p>
+        <div class="found-example">♭7: lower the M7 by 1 semitone</div>
+      </div>
+      <div class="found-card">
+        <h3>Major vs Minor intervals</h3>
+        <p>Major intervals are 1 semitone wider than minor. A Major 3rd = 4 st; minor 3rd = 3 st. "Minor" in an interval name means the smaller version.</p>
+        <div class="found-example">M3 = 4 st · m3 = 3 st</div>
+      </div>
+      <div class="found-card">
+        <h3>Triad</h3>
+        <p>A 3-note chord built from root, 3rd, and 5th. The four triad types differ only in which 3rd and 5th you use. Everything else (7ths, 9ths…) is stacked on top.</p>
+        <div class="found-example">Root + 3rd + 5th</div>
+      </div>
+      <div class="found-card">
+        <h3>Extensions (7, 9, 11, 13)</h3>
+        <p>Notes added above the triad by continuing to stack 3rds. 9, 11, 13 are just the 2nd, 4th, 6th moved up an octave — same pitch class, higher register.</p>
+        <div class="found-example">9th = 2nd, one octave up</div>
+      </div>
+      <div class="found-card">
+        <h3>Tritone</h3>
+        <p>Exactly 6 semitones — the midpoint of the octave. Historically "diabolus in musica." It's the engine of tension in dominant 7th chords (the M3 and ♭7 form a tritone).</p>
+        <div class="found-example">C → F♯/G♭ = 6 semitones</div>
+      </div>
+      <div class="found-card">
+        <h3>Enharmonic equivalents</h3>
+        <p>Different names for the same pitch. G♯ and A♭ are the same piano key. A dim7's 𝄫7 (double-flat 7) is the same pitch as a M6 — just spelled differently.</p>
+        <div class="found-example">G♯ = A♭ · B𝄫 = A</div>
+      </div>
+      <div class="found-card">
+        <h3>Inversion</h3>
+        <p>When the lowest note isn't the root. First inversion = 3rd on bottom; second = 5th on bottom. Written as "C/E" (C chord, E in the bass).</p>
+        <div class="found-example">C/E = C major, 1st inversion</div>
+      </div>
+      <div class="found-card">
+        <h3>Resolution</h3>
+        <p>When a tense chord moves to a stable one. Dominant 7 chords (V7) "want" to resolve to I. The ♭7 and M3 form a tritone that pulls inward to the tonic's root and 3rd.</p>
+        <div class="found-example">G7 → Cmaj (V7 → I)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Interval reference table ───────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-title">Interval Reference</div>
+    <table class="interval-table">
+      <thead>
+        <tr>
+          <th>Semitones</th>
+          <th>Interval Name</th>
+          <th>Also Called</th>
+          <th>Appears In</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="mono">0</td><td>Root / Unison</td><td>—</td><td>Every chord</td></tr>
+        <tr><td class="mono">2</td><td>Major 2nd</td><td>9th</td><td>sus2, add9, 9th chords</td></tr>
+        <tr><td class="mono">3</td><td>Minor 3rd</td><td>♭3</td><td>Minor, diminished, half-dim</td></tr>
+        <tr><td class="mono">4</td><td>Major 3rd</td><td>3</td><td>Major, dominant, augmented</td></tr>
+        <tr><td class="mono">5</td><td>Perfect 4th</td><td>11th</td><td>sus4, 11th chords</td></tr>
+        <tr><td class="mono">6</td><td>Tritone</td><td>♭5 / ♯11</td><td>Diminished, dom7♭5</td></tr>
+        <tr><td class="mono">7</td><td>Perfect 5th</td><td>5</td><td>Most chords</td></tr>
+        <tr><td class="mono">8</td><td>Augmented 5th</td><td>♯5 / ♭13</td><td>Augmented, aug maj7</td></tr>
+        <tr><td class="mono">9</td><td>Major 6th</td><td>13th / 𝄫7</td><td>13th chords, dim7</td></tr>
+        <tr><td class="mono">10</td><td>Minor 7th</td><td>♭7</td><td>Dom7, m7, half-dim</td></tr>
+        <tr><td class="mono">11</td><td>Major 7th</td><td>M7</td><td>maj7, mM7</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    <span>Chord Theory Cheat Sheet</span>
+    <span>R = Root · st = semitones · M = Major · m = minor · P = Perfect</span>
+  </footer>
+
+</div>
+
+<!-- Scripts loaded in dependency order -->
+<script src="js/notes.js"></script>
+<script src="js/chords.js"></script>
+<script src="js/staff.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
